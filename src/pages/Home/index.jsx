@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { fetchUserDetails } from "@/api/profile"; // Import the API function
+import { fetchUserDetails } from "@/api/profile";
 
 const Home = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
 
-  // Toggle dropdown and fetch user details when clicked
   const toggleDropdown = async () => {
     if (!user) {
       try {
-        const userData = await fetchUserDetails(); // Call the function from api.js
+        const userData = await fetchUserDetails();
         setUser(userData);
       } catch (error) {
         setError("Failed to fetch user details.");
@@ -21,7 +20,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Header with avatar on the top-right */}
       <header className="flex justify-between items-center p-4 bg-white shadow">
         <h1 className="text-xl font-bold">Home</h1>
         <div className="relative">
@@ -32,7 +30,6 @@ const Home = () => {
             onClick={toggleDropdown}
           />
 
-          {/* Dropdown with user details */}
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10">
               {user ? (
@@ -61,7 +58,6 @@ const Home = () => {
         </div>
       </header>
 
-      {/* Main content */}
       <main className="p-4">
         <h2 className="text-2xl">Welcome to the Home Page!</h2>
       </main>
